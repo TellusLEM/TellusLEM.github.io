@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TellusLEM — slope stability for engineers and agents</title>
+<meta name="description" content="TellusLEM is an open limit equilibrium slope stability program with ten methods of slices, automatic searches, 3D terrain sections and an MCP server for AI agents.">
+<link rel="icon" href="assets/favicon-slope.png?v=2">
+<link rel="apple-touch-icon" href="assets/logo-slope.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="#top"><img src="assets/logo-slope.png?v=2" alt=""><span>TellusLEM</span></a>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#agents">Agents</a>
+    <a href="#verification">Verification</a>
+    <a href="https://zenodo.org/records/23582071">Paper</a>
+    <a href="#download" class="pill">Download</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- hero -->
+  <section class="hero">
+    <svg class="contours" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M-50 420 C 200 380, 380 470, 620 410 S 1000 330, 1250 380"/>
+        <path d="M-50 360 C 220 320, 400 420, 640 350 S 1010 270, 1250 320"/>
+        <path d="M-50 300 C 240 260, 420 370, 660 290 S 1020 210, 1250 260"/>
+        <path d="M-50 240 C 260 200, 440 320, 680 230 S 1030 150, 1250 200"/>
+        <path d="M-50 180 C 280 140, 460 270, 700 170 S 1040 90, 1250 140"/>
+        <path d="M-50 480 C 180 440, 360 520, 600 470 S 990 390, 1250 440"/>
+      </g>
+    </svg>
+
+    <div class="hero-text reveal">
+      <p class="eyebrow">Limit equilibrium · v0.1.0</p>
+      <h1>Slope stability,<br>for engineers <span class="and">and</span> agents.</h1>
+      <p class="lede">TellusLEM analyses slopes by ten methods of slices, searches circular and non-circular slip surfaces, cuts sections from 3D terrain, and exposes the whole workflow to AI agents through the Model Context Protocol.</p>
+      <div class="cta">
+        <a class="btn primary" href="#download">Download</a>
+        <a class="btn ghost" href="https://zenodo.org/records/23582071">Paper →</a>
+      </div>
+    </div>
+
+    <figure class="slope reveal" aria-label="An animated slope with a slip circle and its factor of safety">
+      <svg viewBox="0 0 560 340" id="slope-svg">
+        <defs>
+          <clipPath id="mass"><path d="M60 250 L190 250 L330 150 L520 150 L520 320 L60 320 Z"/></clipPath>
+        </defs>
+        <!-- ground and layers -->
+        <path class="soil" d="M20 250 L190 250 L330 150 L540 150 L540 320 L20 320 Z"/>
+        <path class="layer" d="M20 285 L540 285"/>
+        <path class="ground" d="M20 250 L190 250 L330 150 L540 150"/>
+        <!-- slices inside the sliding mass, drawn by JS -->
+        <g id="slices" clip-path="url(#mass)"></g>
+        <!-- the slip circle: centre (300, 20), radius 255 -->
+        <path id="slip" class="slip" d=""/>
+        <circle id="centre" class="centre" cx="300" cy="20" r="4"/>
+        <line id="radius" class="radius" x1="300" y1="20" x2="300" y2="20"/>
+        <g class="fs" id="fs-label" transform="translate(300 0)">
+          <text x="14" y="26" class="fs-text">F = <tspan id="fs-value">0.000</tspan></text>
+        </g>
+      </svg>
+      <figcaption>ACADS 1(a), Morgenstern–Price: F = 0.984 (Slide2 0.986)</figcaption>
+    </figure>
+  </section>
+
+  <!-- numbers -->
+  <section class="numbers">
+    <div class="num reveal"><b data-count="10">0</b><span>methods of slices</span></div>
+    <div class="num reveal"><b data-count="29">0</b><span>MCP tools</span></div>
+    <div class="num reveal"><b data-count="34">0</b><span>benchmark case files</span></div>
+    <div class="num reveal"><b data-count="0.65" data-decimals="2" data-suffix="%">0</b><span>mean difference from Slide2</span></div>
+  </section>
+
+  <!-- features -->
+  <section id="features" class="block">
+    <h2 class="reveal">Everything a slope needs, in one small program.</h2>
+    <div class="grid">
+      <article class="card reveal"><h3>Ten methods</h3><p>General limit equilibrium with Ordinary, Bishop, Janbu, Spencer, Morgenstern–Price, Corps of Engineers, Lowe–Karafiath, Janbu generalized and Sarma.</p></article>
+      <article class="card reveal"><h3>Searches that stay physical</h3><p>Grid, entry–exit, block and metaheuristic searches with shape optimisation, guarded by concavity, m<sub>α</sub>, λ-root and interslice-tension rules.</p></article>
+      <article class="card reveal"><h3>Water, properly</h3><p>Piezometric lines with the phreatic correction, r<sub>u</sub>, B̄, kriged pore pressures, ponded water, and suction in unsaturated soil.</p></article>
+      <article class="card reveal"><h3>Staged and probabilistic</h3><p>Duncan–Wright–Wong rapid drawdown, staged pseudo-static, Monte Carlo and Latin hypercube, Newmark displacement, partial factors.</p></article>
+      <article class="card reveal"><h3>3D terrain</h3><p>Import LandXML, DXF, XYZ, OBJ or STL, cut sections at any spacing, and let the program find the critical one.</p></article>
+      <article class="card reveal"><h3>Reports</h3><p>One scene description drawn on screen, as SVG and as a vector PDF report, with the free body of every column.</p></article>
+    </div>
+  </section>
+
+  <!-- agents -->
+  <section id="agents" class="block split">
+    <div class="reveal">
+      <p class="eyebrow">Model Context Protocol</p>
+      <h2>Describe the slope. The agent builds it.</h2>
+      <p>Every modelling step is a tool. Any MCP client can drive TellusLEM locally over stdio or remotely over Streamable HTTP, and every change returns a check, so the agent sees what it built. The built-in chat runs an agent on the same tools.</p>
+      <pre class="code"><span class="c"># Claude Code, local</span>
+claude mcp add -s user tellus-lem -- tellus-lem --mcp
+
+<span class="c"># a shared server for remote agents</span>
+tellus-lem --mcp --http 0.0.0.0:8787 --token $T</pre>
+    </div>
+    <div class="terminal reveal" aria-label="A recorded agent session">
+      <div class="term-bar"><i></i><i></i><i></i><span>agent session · ACADS 1(a)</span></div>
+      <div class="term-body" id="term"></div>
+    </div>
+  </section>
+
+  <!-- screenshots -->
+  <section class="block shots">
+    <figure class="shot reveal"><img src="assets/app-output.jpg" alt="TellusLEM output view with the critical slip circle and the factor by ten methods" loading="lazy"><figcaption>Output: the critical surface and the factor by every method.</figcaption></figure>
+    <figure class="shot reveal"><img src="assets/app-3d.jpg" alt="TellusLEM 3D view of Nakkerd Hill, Phuket, with 37 sections coloured by factor of safety" loading="lazy"><figcaption>3D: 37 sections cut from the open terrain of Nakkerd Hill, Phuket.</figcaption></figure>
+    <figure class="shot reveal"><img src="assets/app-column.jpg" alt="Column free body window with the force polygon" loading="lazy"><figcaption>Every column: free body, force polygon and stresses.</figcaption></figure>
+  </section>
+
+  <!-- verification -->
+  <section id="verification" class="block">
+    <div class="split narrow">
+      <div class="reveal">
+        <p class="eyebrow">Calibration and verification</p>
+        <h2>Checked against the classics, failures included.</h2>
+        <p>Closed-form solutions, the SLOPE/W reference book, 27 benchmark problems and 12 case histories, each compared with the published value and an independent Slide2 result. The cases that disagree are reported with their causes.</p>
+        <a class="btn ghost paper" href="https://zenodo.org/records/23582071">Read the paper →</a>
+        <p class="cite">TellusLEM: Agentic Limit Equilibrium Software and Its Calibration · doi:10.5281/zenodo.23582071</p>
+      </div>
+      <div class="bars reveal" id="bars">
+        <div class="bar-head"><span></span><span>TellusLEM</span><span>Slide2</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- download -->
+  <section id="download" class="block download">
+    <h2 class="reveal">Download v0.1.0</h2>
+    <div class="dl reveal">
+      <a class="dl-card" href="https://github.com/Sompote/TellusLEM/releases/download/v0.1.0/TellusLEM-0.1.0-macos-universal.zip">
+        <b>macOS</b><span>Universal · Apple silicon and Intel</span><em>.zip</em>
+      </a>
+      <a class="dl-card" href="https://github.com/Sompote/TellusLEM/releases/download/v0.1.0/TellusLEM-0.1.0-windows-x64.zip">
+        <b>Windows</b><span>x64 · Windows 10 and 11</span><em>.zip</em>
+      </a>
+    </div>
+    <p class="note reveal">The macOS app is ad-hoc signed: right-click and choose Open the first time. The chat uses OpenRouter with your own key.</p>
+  </section>
+
+</main>
+
+<footer>
+  <span>TellusLEM · AI Research Group, Department of Civil Engineering, KMUTT</span>
+  <span class="links">
+    <a href="https://zenodo.org/records/23582071">Paper (Zenodo)</a>
+    <a href="mailto:tellusfem@gmail.com">tellusfem@gmail.com</a>
+  </span>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
