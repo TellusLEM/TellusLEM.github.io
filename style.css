@@ -214,3 +214,6 @@ footer a:hover { color: var(--fg); }
 footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
 .btn.paper { display: inline-block; margin-top: 8px; }
 .block p.cite { font-size: 12px; margin-top: 14px; }
+
+.manual-link { display: inline-block; margin-top: 16px; }
+.manual-cta { display: inline-block; margin-top: 20px; }

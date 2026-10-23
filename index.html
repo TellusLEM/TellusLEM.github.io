@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -20,6 +20,7 @@
     <a href="#features">Features</a>
     <a href="#agents">Agents</a>
     <a href="#verification">Verification</a>
+    <a href="manual.html">Manual</a>
     <a href="https://zenodo.org/records/23582071">Paper</a>
     <a href="#download" class="pill">Download</a>
   </nav>
@@ -105,6 +106,7 @@ claude mcp add -s user tellus-lem -- tellus-lem --mcp
 
 <span class="c"># a shared server for remote agents</span>
 tellus-lem --mcp --http 0.0.0.0:8787 --token $T</pre>
+      <a class="btn ghost manual-link" href="manual.html#mcp">MCP setup for every client →</a>
     </div>
     <div class="terminal reveal" aria-label="A recorded agent session">
       <div class="term-bar"><i></i><i></i><i></i><span>agent session · ACADS 1(a)</span></div>
@@ -147,6 +149,7 @@ tellus-lem --mcp --http 0.0.0.0:8787 --token $T</pre>
       </a>
     </div>
     <p class="note reveal">The macOS app is ad-hoc signed: right-click and choose Open the first time. The chat uses OpenRouter with your own key.</p>
+    <a class="btn primary manual-cta reveal" href="manual.html">Read the user manual →</a>
   </section>
 
 </main>

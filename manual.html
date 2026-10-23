@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TellusLEM user manual</title>
+<meta name="description" content="How to use TellusLEM: install, draw a slope, set materials, water and loads, calculate, read the results, use 3D terrain, the chat assistant, and connect AI agents through MCP.">
+<link rel="icon" href="assets/favicon-slope.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="manual.css?v=1">
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="index.html"><img src="assets/logo-slope.png?v=2" alt=""><span>TellusLEM</span></a>
+  <nav>
+    <a href="index.html#features">Features</a>
+    <a href="manual.html" class="current">Manual</a>
+    <a href="https://zenodo.org/records/23582071">Paper</a>
+    <a href="index.html#download" class="pill">Download</a>
+  </nav>
+</header>
+
+<div class="manual">
+  <aside class="toc" id="toc">
+    <p class="toc-title">User manual</p>
+    <a href="#install">1. Install</a>
+    <a href="#screen">2. The screen</a>
+    <a href="#first">3. First analysis in 5 minutes</a>
+    <a href="#geometry">4. Geometry</a>
+    <a href="#materials">5. Materials</a>
+    <a href="#water">6. Water</a>
+    <a href="#loads">7. Loads and seismic</a>
+    <a href="#reinforcement">8. Reinforcement</a>
+    <a href="#slip">9. Slip surface and method</a>
+    <a href="#advanced">10. Advanced analyses</a>
+    <a href="#output">11. Results</a>
+    <a href="#terrain">12. 3D terrain</a>
+    <a href="#chat">13. Chat assistant</a>
+    <a href="#mcp">14. Connect an AI agent (MCP)</a>
+    <a href="#tips">15. Tips and troubleshooting</a>
+  </aside>
+
+  <article class="doc">
+    <header class="doc-head reveal">
+      <p class="eyebrow">User manual · v0.1.0</p>
+      <h1>Using TellusLEM</h1>
+      <p class="lede">A practical guide for civil engineers: draw the slope, give the soils their strength, add water and loads, press Calculate and read the factor of safety. Each step below matches a tab in the program.</p>
+    </header>
+
+    <!-- 1 install -->
+    <section id="install" class="sec">
+      <h2>1. Install</h2>
+      <div class="two">
+        <div class="box reveal">
+          <h3>macOS (Apple silicon and Intel)</h3>
+          <ol>
+            <li>Download <b>TellusLEM-0.1.0-macos-universal.zip</b> from the <a href="index.html#download">download section</a> and double-click it to unzip.</li>
+            <li>Drag <b>TellusLEM.app</b> into <b>Applications</b>.</li>
+            <li>The first time, <b>right-click</b> the app and choose <b>Open</b>, then <b>Open</b> again. The app is not notarised by Apple, so a normal double-click is blocked only on this first run.</li>
+          </ol>
+        </div>
+        <div class="box reveal">
+          <h3>Windows 10 and 11 (64-bit)</h3>
+          <ol>
+            <li>Download <b>TellusLEM-0.1.0-windows-x64.zip</b>, right-click it and choose <b>Extract All</b>.</li>
+            <li>Open the extracted folder and double-click <b>tellus-lem.exe</b>.</li>
+            <li>If Windows SmartScreen appears, click <b>More info → Run anyway</b>. Keep <b>tigrim.exe</b> in the same folder: the chat assistant needs it.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="note reveal">No installation of Python, a database or a licence server is needed. Projects are saved as <code>.tlem</code> files that you can e-mail or keep in version control.</p>
+    </section>
+
+    <!-- 2 screen -->
+    <section id="screen" class="sec">
+      <h2>2. The screen at a glance</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/geometry.jpg" alt="TellusLEM main window in the Input view with the example slope"><figcaption>The Input view with the example slope.</figcaption></figure>
+      <div class="legend reveal">
+        <div><b>Top bar</b><span><b>File</b> (new, open, save, import terrain, PDF report), <b>Undo/Redo</b>, the <b>Input</b> and <b>Output</b> views, the green <b>Calculate</b> button, <b>Chat assistant</b> and the light/dark switch.</span></div>
+        <div><b>Steps (left)</b><span>Seven tabs in the order you build a model: 1 Geometry, 2 Materials, 3 Water, 4 Loads, 5 Reinforcement, 6 Slip surface, 7 Advanced. Each shows the settings of that step.</span></div>
+        <div><b>Tool strip</b><span>The vertical row of drawing tools between the settings and the drawing (see section 4).</span></div>
+        <div><b>Drawing area</b><span>The cross-section. <b>Scroll</b> to zoom, <b>right-drag</b> to pan, <b>double-click</b> an empty place to fit the model. The bar above it holds grid and snap options.</span></div>
+      </div>
+    </section>
+
+    <!-- 3 first -->
+    <section id="first" class="sec">
+      <h2>3. Your first analysis in 5 minutes</h2>
+      <ol class="steps reveal">
+        <li><b>File → New: example slope.</b> A 10 m high slope of silty clay over dense sand with a water table appears.</li>
+        <li>Open <b>2 Materials</b> and check the strengths (c′ and φ′) and unit weights. Change a value and press Enter.</li>
+        <li>Press the green <b>Calculate</b>. The program searches thousands of trial slip surfaces; a small example takes 1–2 seconds.</li>
+        <li>The <b>Output</b> view opens with the factor of safety, the critical slip surface and the factor by all ten methods.</li>
+        <li><b>File → Save project</b> to keep the model, or <b>File → Write report (PDF)</b> for a calculation report.</li>
+      </ol>
+      <p class="note reveal">To start your own slope, use <b>File → New: empty section</b> and follow sections 4 to 9 in order.</p>
+    </section>
+
+    <!-- 4 geometry -->
+    <section id="geometry" class="sec">
+      <h2>4. Step 1 · Geometry</h2>
+      <p class="reveal">The cross-section is made of <b>regions</b> (closed polygons), one per soil or rock zone. Regions must share their edges exactly; use <b>snap to points</b> so a new region starts on the corners of the old one. Choose <b>2D section</b> here, or <b>3D terrain</b> to cut sections from a terrain model (section 12).</p>
+      <ol class="steps reveal">
+        <li>Choose the <b>Draw region</b> tool (polygon) or the <b>Rectangle</b> tool.</li>
+        <li>Click the corners. Close the region by clicking the first point again or by <b>double-clicking</b>.</li>
+        <li>For exact coordinates, <b>type a point as x, y</b> in the box above the drawing (for example <code>25, 20</code>) and press Enter.</li>
+        <li>In the <b>Regions</b> list on the left, pick each region's material.</li>
+      </ol>
+      <table class="tools reveal">
+        <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>Select</td><td>Click an object to select it and drag its points. <kbd>Delete</kbd> removes it.</td></tr>
+          <tr><td>Move</td><td>Move a whole object.</td></tr>
+          <tr><td>Add point / Delete point</td><td>Add a point on an edge (shared edges get it too), or remove a point from every region and line that uses it.</td></tr>
+          <tr><td>Draw region / Rectangle</td><td>Draw a polygon by its corners, or a rectangle by two opposite corners.</td></tr>
+          <tr><td>Assign material</td><td>Click regions to give them the current material.</td></tr>
+          <tr><td>Water level</td><td>Draw a piezometric line (section 6).</td></tr>
+          <tr><td>Weak layer</td><td>Draw a thin weak plane; slip surfaces below it follow it and take its strength.</td></tr>
+          <tr><td>Surcharge / Point load</td><td>Add loads (section 7).</td></tr>
+          <tr><td>Reinforcement</td><td>Anchors, nails, geosynthetics, piles (section 8).</td></tr>
+          <tr><td>Slip surface</td><td>Draw a fully specified slip surface to check one surface.</td></tr>
+          <tr><td>Measure</td><td>Distance, slope and angle between two points.</td></tr>
+          <tr><td>Grid / Snap / Fit / Delete / Undo</td><td>Show the grid, snap to points and grid, fit the view, delete the selection, undo (<kbd>⌘Z</kbd> / <kbd>Ctrl+Z</kbd>).</td></tr>
+        </tbody>
+      </table>
+      <p class="tip reveal">Extend the section about <b>three slope heights</b> beyond the crest and the toe, so the critical slip surface is not cut off by the model edge.</p>
+    </section>
+
+    <!-- 5 materials -->
+    <section id="materials" class="sec">
+      <h2>5. Step 2 · Materials</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/materials.jpg" alt="Materials step with Mohr-Coulomb strength, unit weight and piezometric line"><figcaption>Each material: strength model, unit weight and how pore water acts in it.</figcaption></figure>
+      <ol class="steps reveal">
+        <li>Click a material to open it, or <b>+ Material</b> to add one. Give it a name and a colour.</li>
+        <li>Choose the <b>strength model</b>. Most soils use <b>Mohr-Coulomb</b> (c′ in kPa, φ′ in degrees); soft clay in a short-term case uses <b>Undrained</b> (s<sub>u</sub>), or s<sub>u</sub> increasing with depth. Hoek–Brown, SHANSEP, bilinear, anisotropic and others are in the same list.</li>
+        <li>Enter the <b>unit weight</b> (kN/m³). Tick <b>Above water</b> to give a different weight above the water table.</li>
+        <li>Choose which <b>Piezometric line</b> gives this material its pore pressure, or enter <b>Ru</b> or <b>B-bar</b> if you use those methods.</li>
+        <li>Use <b>Impenetrable</b> for bedrock: slip surfaces stop at it.</li>
+      </ol>
+    </section>
+
+    <!-- 6 water -->
+    <section id="water" class="sec">
+      <h2>6. Step 3 · Water</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/water.jpg" alt="Water step with the piezometric method and the water table line"><figcaption>Pore water pressure: method, ponding and the piezometric lines.</figcaption></figure>
+      <ol class="steps reveal">
+        <li>Choose the method: <b>Piezometric</b> (lines), <b>Ru</b>, <b>B-bar</b>, <b>Spatial</b> (measured points, interpolated) or <b>None</b>.</li>
+        <li>Click <b>Draw line</b> and click the water table from <b>left to right</b>; double-click or Enter to finish.</li>
+        <li>Tick <b>Ponded water above the ground is a load</b> for a reservoir or a pond: the water then pushes on the ground surface.</li>
+        <li>Tick <b>Phreatic correction (cos²β)</b> for seepage parallel to a sloping water table, which gives the correct, smaller pore pressure.</li>
+      </ol>
+      <p class="tip reveal">A water line only acts in the materials that name it in Step 2. If the factor does not change when you move the water table, check that the material uses the line.</p>
+    </section>
+
+    <!-- 7 loads -->
+    <section id="loads" class="sec">
+      <h2>7. Step 4 · Loads and seismic</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/loads.jpg" alt="Loads step with surcharge, point load and pseudo-static coefficients"><figcaption>Surcharges, point loads and the pseudo-static coefficients.</figcaption></figure>
+      <ul class="steps reveal">
+        <li><b>Draw surcharge</b>: click the top line of the load; its height above the ground times the unit weight is the pressure (for example 1 m at 20 kN/m³ = 20 kPa). Double-click to finish.</li>
+        <li><b>Point load</b>: click where it acts and enter its components in kN per metre run (negative acts downward).</li>
+        <li><b>Seismic</b>: enter k<sub>h</sub> (horizontal, acting in the direction of sliding) and k<sub>v</sub> (adds to the weight) in g.</li>
+      </ul>
+    </section>
+
+    <!-- 8 reinforcement -->
+    <section id="reinforcement" class="sec">
+      <h2>8. Step 5 · Reinforcement</h2>
+      <p class="reveal">Click <b>Draw reinforcement</b>, click the start at the slope face, then the end. Choose the type (anchor, soil nail, geosynthetic, pile or a user-defined force) and its capacity, pull-out resistance and out-of-plane spacing. The program adds the force where a slip surface crosses the reinforcement.</p>
+      <figure class="shot zoom reveal small"><img src="assets/manual/reinforcement.jpg" alt="Reinforcement step"><figcaption>The Reinforcement step.</figcaption></figure>
+    </section>
+
+    <!-- 9 slip -->
+    <section id="slip" class="sec">
+      <h2>9. Step 6 · Slip surface and method</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/slip.jpg" alt="Slip surface step with method and search settings"><figcaption>Method, search and options.</figcaption></figure>
+      <div class="two">
+        <div class="box reveal">
+          <h3>Method</h3>
+          <p><b>Morgenstern–Price</b> with the half-sine function is the default and suits most slopes. Bishop simplified is quick for circles. Every run also reports the factor by all ten methods, so you can compare without recalculating.</p>
+          <p><b>Columns</b> 30–50 is enough; <b>Minimum depth</b> skips shallow surface slips (use 1–3 m for overall stability of a frictional slope).</p>
+        </div>
+        <div class="box reveal">
+          <h3>Search</h3>
+          <p><b>Automatic</b> (default) searches circles, polylines or splines by itself. <b>Entry and exit</b>: you click the ranges on the ground where slips may start and end. <b>Grid and radius</b>: the classic grid of centres. <b>Block</b>: wedge-type failures along a weak zone. <b>Fully specified</b>: check a surface you drew.</p>
+          <p>Tick <b>Optimise the shape</b> to refine the critical surface into a non-circular one.</p>
+        </div>
+      </div>
+      <p class="tip reveal"><b>Tension crack</b> removes the top of the slip in a cracked crust (optionally water-filled). <b>Exit angle limit</b> keeps exits from becoming unrealistically steep.</p>
+    </section>
+
+    <!-- 10 advanced -->
+    <section id="advanced" class="sec">
+      <h2>10. Step 7 · Advanced analyses</h2>
+      <figure class="shot zoom reveal small"><img src="assets/manual/advanced.jpg" alt="Advanced step with staged, probabilistic and other analyses"><figcaption>Optional analyses; leave them off for an ordinary check.</figcaption></figure>
+      <ul class="steps reveal">
+        <li><b>Staged analysis</b>: rapid drawdown (Duncan, Wright and Wong three-stage) and staged pseudo-static. For drawdown, draw two water lines (before and after) and give the R envelope in Step 2.</li>
+        <li><b>Probabilistic</b>: Monte Carlo or Latin hypercube on the critical surface; gives the probability of failure and the reliability index.</li>
+        <li><b>Sensitivity</b>: varies one parameter at a time.</li>
+        <li><b>Partial factors</b>: limit state design (EC7, NS 3480, BS 8006).</li>
+        <li><b>Newmark</b>: permanent displacement from an acceleration record.</li>
+        <li><b>Stress-based stability</b>: the factor from finite element stresses along the critical surface.</li>
+      </ul>
+    </section>
+
+    <!-- 11 output -->
+    <section id="output" class="sec">
+      <h2>11. Reading the results</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/output.jpg" alt="Output view with factor of safety 1.325 and the critical circle"><figcaption>Output: the factor of safety, the critical slip surface and all methods.</figcaption></figure>
+      <ul class="steps reveal">
+        <li>The large number is the <b>factor of safety</b> of the critical slip surface by the chosen method (green when it is comfortably above 1, orange or red when it is low).</li>
+        <li>Below it: how many trial surfaces converged, the circle (centre and radius) or the entry and exit points, F<sub>m</sub>, F<sub>f</sub> and λ, and the weight of the sliding mass.</li>
+        <li>The list gives the factor of the <b>same surface by every method</b>: Ordinary, Bishop, Janbu, Spencer, Morgenstern–Price, Corps of Engineers 1 and 2, Lowe–Karafiath, Janbu generalized and Sarma.</li>
+        <li>The drawing shows the critical surface, the sliding mass and its columns.</li>
+      </ul>
+      <figure class="shot zoom reveal"><img src="assets/manual/column.jpg" alt="Column window with free body diagram, force polygon and stresses"><figcaption>Click any column for its free body, force polygon and stresses; previous/next steps through the columns.</figcaption></figure>
+      <p class="tip reveal">A closed force polygon (small residual) confirms the column is in equilibrium. Negative normal stresses near the crest suggest a tension crack.</p>
+      <p class="reveal"><b>Reports.</b> <b>File → Write report (PDF)</b> writes a calculation report with the model, the critical surface, the trial surfaces and the results. Typical required factors: 1.5 long term, 1.3 end of construction, 1.0–1.1 pseudo-static (check your national code).</p>
+    </section>
+
+    <!-- 12 terrain -->
+    <section id="terrain" class="sec">
+      <h2>12. 3D terrain</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/3dinput.jpg" alt="3D terrain input with layers, water table and section settings"><figcaption>3D input: terrain, layers, water table and sections.</figcaption></figure>
+      <ol class="steps reveal">
+        <li>In <b>1 Geometry</b> choose <b>3D terrain (sections)</b>, then <b>Import terrain…</b> and pick a LandXML, DXF (3D faces or contours), XYZ/CSV, OBJ or STL file. <b>File → New: 3D terrain example</b> gives a ready example.</li>
+        <li><b>Layers</b>: add the layers top down; give each bottom as a depth below the terrain, an elevation, or an imported surface. The last layer reaches the model base.</li>
+        <li><b>Water table</b>: a depth below the terrain, an elevation or an imported surface.</li>
+        <li><b>Sections</b>: the spacing (m), the section length to each side, and the direction (azimuth, an alignment you draw in plan, or the local downhill direction).</li>
+        <li>Press <b>Calculate</b>: every section is analysed and the critical one is reported.</li>
+      </ol>
+      <figure class="shot zoom reveal"><img src="assets/manual/3d.jpg" alt="3D output with sections coloured by factor of safety"><figcaption>3D output: sections coloured by factor of safety, with the table of every section.</figcaption></figure>
+      <p class="tip reveal">Drag to turn the 3D view, scroll to zoom, right-drag to pan; <b>Plan</b> and <b>Perspective</b> switch the view. Click a section number in the table to see that section with its slip surface, and <b>Open the section as a 2D model</b> to study it in detail (Undo brings the 3D model back).</p>
+    </section>
+
+    <!-- 13 chat -->
+    <section id="chat" class="sec">
+      <h2>13. Chat assistant</h2>
+      <figure class="shot zoom reveal"><img src="assets/manual/chat.jpg" alt="Chat assistant panel next to the model"><figcaption>The chat assistant builds and analyses slopes from a description.</figcaption></figure>
+      <ol class="steps reveal">
+        <li>Create an API key at <a href="https://openrouter.ai/keys">openrouter.ai/keys</a> (OpenRouter gives access to many language models; you pay them for what you use).</li>
+        <li>Click <b>Chat assistant</b> → <b>Settings</b>. The default engine is already filled in: API URL <code>https://openrouter.ai/api/v1</code>, model <code>deepseek/deepseek-v4.1-flash-1017</code>.</li>
+        <li>Paste your key in <b>API key</b> and click <b>Save key</b>, then <b>Done</b>. The key is stored only on your computer.</li>
+        <li>Describe the slope, for example: <i>“A 12 m high 2:1 cut in clay (c′ 10 kPa, φ′ 25°) over rock, water table 3 m below the crest. Factor of safety?”</i> and press Enter. You can also attach a sketch with <b>Image…</b>.</li>
+      </ol>
+      <p class="tip reveal">The assistant edits the same model you see, and every change can be undone. Check what it built in the Input view before you use its numbers, as you would check a junior engineer's model.</p>
+    </section>
+
+    <!-- 14 mcp -->
+    <section id="mcp" class="sec">
+      <h2>14. Connect an AI agent (MCP)</h2>
+      <p class="reveal">TellusLEM includes an <b>MCP server</b> (Model Context Protocol). Any MCP-capable assistant (Claude Code, Claude Desktop, Cursor, VS Code, Codex, Gemini CLI) can then build slopes, calculate and read results with 29 tools. Replace <code>/path/to/tellus-lem</code> with where the program is:</p>
+      <ul class="paths reveal">
+        <li>macOS: <code>/Applications/TellusLEM.app/Contents/MacOS/tellus-lem</code></li>
+        <li>Windows: <code>C:\TellusLEM\tellus-lem.exe</code> (the folder you extracted)</li>
+      </ul>
+
+      <div class="tabs reveal" id="mcp-tabs">
+        <div class="tab-bar">
+          <button class="on" data-tab="cc">Claude Code</button>
+          <button data-tab="cd">Claude Desktop</button>
+          <button data-tab="cu">Cursor / Windsurf</button>
+          <button data-tab="vs">VS Code</button>
+          <button data-tab="http">Remote (HTTP)</button>
+        </div>
+        <div class="tab on" data-tab="cc">
+          <p>Run once in a terminal; the tools appear in new Claude Code sessions.</p>
+          <pre class="code copy">claude mcp add -s user tellus-lem -- /Applications/TellusLEM.app/Contents/MacOS/tellus-lem --mcp</pre>
+        </div>
+        <div class="tab" data-tab="cd">
+          <p>Open <b>Settings → Developer → Edit Config</b> and add, then restart Claude Desktop:</p>
+          <pre class="code copy">{
+  "mcpServers": {
+    "tellus-lem": {
+      "command": "/Applications/TellusLEM.app/Contents/MacOS/tellus-lem",
+      "args": ["--mcp"]
+    }
+  }
+}</pre>
+        </div>
+        <div class="tab" data-tab="cu">
+          <p>In the MCP settings (Cursor: <b>Settings → MCP → Add new server</b>), add:</p>
+          <pre class="code copy">{
+  "mcpServers": {
+    "tellus-lem": { "command": "C:\\TellusLEM\\tellus-lem.exe", "args": ["--mcp"] }
+  }
+}</pre>
+        </div>
+        <div class="tab" data-tab="vs">
+          <p>Create <code>.vscode/mcp.json</code> in your project (Copilot agent mode):</p>
+          <pre class="code copy">{
+  "servers": {
+    "tellus-lem": { "type": "stdio", "command": "/path/to/tellus-lem", "args": ["--mcp"] }
+  }
+}</pre>
+        </div>
+        <div class="tab" data-tab="http">
+          <p>For agents on other computers, start one server with a secret token, then connect each agent to its address:</p>
+          <pre class="code copy">tellus-lem --mcp --http 0.0.0.0:8787 --token YOUR-LONG-SECRET --root ~/tellus-work</pre>
+          <pre class="code copy">claude mcp add --transport http tellus-lem http://SERVER:8787/mcp --header "Authorization: Bearer YOUR-LONG-SECRET"</pre>
+          <p class="small">Each agent gets its own model. Use it on a local network or VPN, or behind an HTTPS proxy on the internet. Files can only be read and written inside <code>--root</code>.</p>
+        </div>
+      </div>
+
+      <h3 class="reveal">Then just ask</h3>
+      <div class="ask reveal">
+        <p>“Build a 15 m high cut at 1.5H:1V in residual soil (c′ 5 kPa, φ′ 30°, 18.5 kN/m³) over weathered granite. Water table 4 m below the crest. Find the critical circle with Morgenstern–Price and show it.”</p>
+        <p>“Open <code>project.tlem</code>, raise the water table to the ground and tell me how much the factor drops.”</p>
+        <p>“Import <code>site.xml</code>, cut sections every 20 m and tell me which section is critical. Write a PDF report.”</p>
+      </div>
+      <p class="tip reveal">The agent reports only numbers that TellusLEM returns, but it can misread a description. Open the saved <code>.tlem</code> in the app to check the model it built.</p>
+    </section>
+
+    <!-- 15 tips -->
+    <section id="tips" class="sec">
+      <h2>15. Tips and troubleshooting</h2>
+      <dl class="faq reveal">
+        <dt>The factor is very low and the slip surface is a thin sliver at the face.</dt>
+        <dd>A cohesionless surface layer gives infinite-slope slips. Set a <b>Minimum depth</b> (1–3 m) in Step 6 for overall stability, and check the surface slip separately.</dd>
+        <dt>“No slip surface converged” or few converged trials.</dt>
+        <dd>The search does not fit the geometry: widen the model, use <b>Entry and exit</b> ranges on the slope, or check for gaps or overlaps between regions (Select a region and look at its points).</dd>
+        <dt>Moving the water table does not change the factor.</dt>
+        <dd>The material does not use that line: set <b>Piezometric line</b> in Step 2.</dd>
+        <dt>A note says the pore pressure exceeds the vertical stress.</dt>
+        <dd>The water input gives zero effective stress somewhere on the slip surface. Check measured pore pressures and the water table near the ground surface.</dd>
+        <dt>Spencer or Morgenstern–Price give no answer but Bishop does.</dt>
+        <dd>Often a stiff crust in tension: add a <b>Tension crack</b> in Step 6.</dd>
+        <dt>The chat says no key or cannot reach the model.</dt>
+        <dd>Open <b>Chat assistant → Settings</b>, paste the OpenRouter key and click Save key; check the internet connection.</dd>
+      </dl>
+      <p class="reveal">Questions or problems: <a href="mailto:tellusfem@gmail.com">tellusfem@gmail.com</a>. The method and its verification are described in the <a href="https://zenodo.org/records/23582071">paper</a>.</p>
+    </section>
+  </article>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true"><img alt=""></div>
+
+<footer>
+  <span>TellusLEM · AI Research Group, Department of Civil Engineering, KMUTT</span>
+  <span class="links">
+    <a href="https://zenodo.org/records/23582071">Paper (Zenodo)</a>
+    <a href="mailto:tellusfem@gmail.com">tellusfem@gmail.com</a>
+  </span>
+</footer>
+
+<script src="manual.js?v=1"></script>
+</body>
+</html>
