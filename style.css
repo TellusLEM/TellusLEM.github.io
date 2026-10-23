@@ -250,3 +250,8 @@ footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
 .license-foot a { color: var(--muted); }
 .license-foot a:hover { color: var(--fg); }
 .license-foot .btn { padding: 9px 18px; font-size: 14px; cursor: pointer; border: none; font-family: var(--sans); }
+
+/* download badges */
+.badges { display: flex; justify-content: center; gap: 10px; margin: 12px auto 0; }
+.badges img { height: 20px; border-radius: 4px; display: block; }
+.badges a:hover img { opacity: .85; }
