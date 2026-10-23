@@ -217,3 +217,36 @@ footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
 
 .manual-link { display: inline-block; margin-top: 16px; }
 .manual-cta { display: inline-block; margin-top: 20px; }
+
+/* license button and dialog */
+.license-btn { cursor: pointer; }
+.license-dialog {
+  width: min(760px, calc(100vw - 32px)); max-height: calc(100vh - 48px);
+  padding: 0; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--card); color: var(--fg); font-family: var(--sans);
+  box-shadow: 0 30px 80px rgba(0,0,0,.25);
+}
+.license-dialog::backdrop { background: rgba(10, 12, 16, .55); backdrop-filter: blur(4px); }
+.license-head {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+  padding: 20px 24px 16px; border-bottom: 1px solid var(--line);
+}
+.license-head b { display: block; font-size: 17px; font-weight: 600; }
+.license-head span { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }
+.license-close {
+  border: none; background: none; color: var(--muted); font-size: 26px; line-height: 1;
+  cursor: pointer; padding: 0 2px; font-family: var(--sans);
+}
+.license-close:hover { color: var(--fg); }
+.license-text {
+  margin: 0; padding: 20px 24px; max-height: calc(100vh - 220px); overflow: auto;
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.6; white-space: pre-wrap;
+  color: var(--fg); background: var(--code-bg);
+}
+.license-foot {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 14px 24px 18px; border-top: 1px solid var(--line); font-size: 13px;
+}
+.license-foot a { color: var(--muted); }
+.license-foot a:hover { color: var(--fg); }
+.license-foot .btn { padding: 9px 18px; font-size: 14px; cursor: pointer; border: none; font-family: var(--sans); }

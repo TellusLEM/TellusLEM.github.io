@@ -1,0 +1,88 @@
+TELLUSLEM FREEWARE LICENSE AGREEMENT
+
+Copyright (c) 2026 Sompote Youwai. All rights reserved.
+Contact: tellusfem@gmail.com
+
+This agreement applies to the TellusLEM software, including its
+documentation and any updates (the "software").
+
+Please read this agreement carefully before installing or using the
+software. By installing or using the software, you agree to be bound by
+these terms. If you do not agree, do not install or use the software.
+
+1. GRANT OF LICENSE
+   The copyright holder grants you a free, non-exclusive,
+   non-transferable license to download, install and use this software
+   for personal, academic and commercial purposes.
+
+2. RESTRICTIONS
+   You may NOT:
+   (a) reverse engineer, decompile or disassemble the software, except
+       where applicable law expressly permits it;
+   (b) modify, adapt, translate or create derivative works from the
+       software;
+   (c) sell, rent, lease, sublicense or otherwise charge for the
+       software;
+   (d) remove, alter or hide any copyright notice, trademark or
+       disclaimer in the software.
+
+   You may share copies of the original, unmodified software if it is
+   distributed free of charge and includes this license agreement.
+
+3. OWNERSHIP
+   The software, including its source code, design and documentation,
+   is and remains the property of Sompote Youwai. The software is
+   licensed, not sold. This agreement gives you no ownership rights.
+
+4. ENGINEERING USE AND USER RESPONSIBILITY
+   This software is a tool to assist engineering analysis and
+   calculation. It does NOT replace professional engineering judgment.
+   The user is solely responsible for:
+   (a) checking that all input data, assumptions and parameters are
+       correct;
+   (b) independently verifying all results before using them;
+   (c) making sure designs comply with the applicable codes, standards
+       and regulations;
+   (d) having results reviewed and approved by a qualified licensed
+       engineer where required by law or good practice.
+
+   All decisions based on the results of this software are made at the
+   user's own risk.
+
+5. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED. THIS INCLUDES, BUT IS NOT LIMITED TO, WARRANTIES
+   OF ACCURACY, RELIABILITY, MERCHANTABILITY, FITNESS FOR A PARTICULAR
+   PURPOSE AND NON-INFRINGEMENT. THE COPYRIGHT HOLDER DOES NOT WARRANT
+   THAT THE SOFTWARE OR ITS RESULTS WILL BE ERROR-FREE OR THAT THE
+   SOFTWARE WILL OPERATE WITHOUT INTERRUPTION.
+
+6. LIMITATION OF LIABILITY
+   TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL
+   THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+   INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING FROM
+   THE USE OF, OR INABILITY TO USE, THIS SOFTWARE OR ITS RESULTS. THIS
+   INCLUDES, BUT IS NOT LIMITED TO, STRUCTURAL OR SYSTEM FAILURE,
+   PROPERTY DAMAGE, PERSONAL INJURY, LOSS OF DATA, LOSS OF PROFIT AND
+   BUSINESS INTERRUPTION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+   DAMAGES.
+
+7. UPDATES AND SUPPORT
+   The copyright holder has no obligation to provide updates,
+   maintenance or technical support. Any updates provided are covered
+   by this agreement unless they come with a separate license.
+
+8. TERMINATION
+   This license ends automatically if you break any of its terms. When
+   it ends, you must stop using the software and delete all copies.
+
+9. GOVERNING LAW
+   This agreement is governed by the laws of the Kingdom of Thailand.
+
+10. ENTIRE AGREEMENT
+   This is the entire agreement between you and the copyright holder
+   about the software. If any part is found unenforceable, the
+   remaining parts stay in full force and effect.
+
+BY INSTALLING OR USING THIS SOFTWARE, YOU CONFIRM THAT YOU HAVE READ,
+UNDERSTOOD AND AGREED TO THIS LICENSE AGREEMENT.
